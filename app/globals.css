@@ -55,19 +55,19 @@
   --card-foreground: #f5f5f5;
   --popover: #121212;
   --popover-foreground: #f5f5f5;
-  --primary: oklch(0.88 0.17 98);
-  --primary-foreground: oklch(0.18 0.02 100);
+  --primary: #cf9b15;
+  --primary-foreground: #17120a;
   --secondary: #171717;
   --secondary-foreground: #f5f5f5;
   --muted: #171717;
   --muted-foreground: #b4b4b4;
-  --accent: oklch(0.88 0.17 98);
-  --accent-foreground: oklch(0.18 0.02 100);
+  --accent: #cf9b15;
+  --accent-foreground: #17120a;
   --destructive: oklch(0.577 0.245 27.325);
   --border: #2a2a2a;
   --input: #1d1d1d;
-  --ring: oklch(0.88 0.17 98);
-  --chart-1: oklch(0.88 0.17 98);
+  --ring: #cf9b15;
+  --chart-1: #cf9b15;
   --chart-2: oklch(0.556 0 0);
   --chart-3: oklch(0.439 0 0);
   --chart-4: oklch(0.371 0 0);
@@ -75,12 +75,12 @@
   --radius: 0.625rem;
   --sidebar: #121212;
   --sidebar-foreground: #f5f5f5;
-  --sidebar-primary: oklch(0.88 0.17 98);
-  --sidebar-primary-foreground: oklch(0.18 0.02 100);
+  --sidebar-primary: #cf9b15;
+  --sidebar-primary-foreground: #17120a;
   --sidebar-accent: #171717;
   --sidebar-accent-foreground: #f5f5f5;
   --sidebar-border: #2a2a2a;
-  --sidebar-ring: oklch(0.88 0.17 98);
+  --sidebar-ring: #cf9b15;
 }
 
 /* This portfolio uses a single dark theme defined in :root above.
@@ -94,31 +94,31 @@
   --card-foreground: #f5f5f5;
   --popover: #121212;
   --popover-foreground: #f5f5f5;
-  --primary: oklch(0.88 0.17 98);
-  --primary-foreground: oklch(0.18 0.02 100);
+  --primary: #cf9b15;
+  --primary-foreground: #17120a;
   --secondary: #171717;
   --secondary-foreground: #f5f5f5;
   --muted: #171717;
   --muted-foreground: #b4b4b4;
-  --accent: oklch(0.88 0.17 98);
-  --accent-foreground: oklch(0.18 0.02 100);
+  --accent: #cf9b15;
+  --accent-foreground: #17120a;
   --destructive: oklch(0.704 0.191 22.216);
   --border: #2a2a2a;
   --input: #1d1d1d;
-  --ring: oklch(0.88 0.17 98);
-  --chart-1: oklch(0.88 0.17 98);
+  --ring: #cf9b15;
+  --chart-1: #cf9b15;
   --chart-2: oklch(0.556 0 0);
   --chart-3: oklch(0.439 0 0);
   --chart-4: oklch(0.371 0 0);
   --chart-5: oklch(0.269 0 0);
   --sidebar: #121212;
   --sidebar-foreground: #f5f5f5;
-  --sidebar-primary: oklch(0.88 0.17 98);
-  --sidebar-primary-foreground: oklch(0.18 0.02 100);
+  --sidebar-primary: #cf9b15;
+  --sidebar-primary-foreground: #17120a;
   --sidebar-accent: #171717;
   --sidebar-accent-foreground: #f5f5f5;
   --sidebar-border: #2a2a2a;
-  --sidebar-ring: oklch(0.88 0.17 98);
+  --sidebar-ring: #cf9b15;
 }
 
 @layer base {
@@ -241,10 +241,10 @@
   background: conic-gradient(
     from var(--skill-border-angle),
     transparent 0deg,
-    rgba(255, 200, 80, 0) 0deg,
-    rgba(255, 200, 80, 0.9) 20deg,
-    rgba(255, 200, 80, 0.4) 45deg,
-    rgba(255, 200, 80, 0) 70deg,
+    rgba(207, 155, 21, 0) 0deg,
+    rgba(207, 155, 21, 0.9) 20deg,
+    rgba(207, 155, 21, 0.4) 45deg,
+    rgba(207, 155, 21, 0) 70deg,
     transparent 360deg
   );
   -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
@@ -257,7 +257,7 @@
 }
 
 .skill-card.is-active {
-  box-shadow: 0 0 24px rgba(255, 200, 80, 0.15), 0 0 48px rgba(255, 200, 80, 0.06);
+  box-shadow: 0 0 24px rgba(207, 155, 21, 0.15), 0 0 48px rgba(207, 155, 21, 0.06);
   animation: skill-card-shrink 3s ease forwards;
 }
 
@@ -267,7 +267,7 @@
 }
 
 .skill-card.is-active h3 {
-  text-shadow: 0 0 20px rgba(255, 200, 80, 0.4);
+  text-shadow: 0 0 20px rgba(207, 155, 21, 0.4);
 }
 
 @keyframes skill-border-travel {
@@ -315,14 +315,14 @@
   background: linear-gradient(
     to bottom,
     transparent,
-    rgba(255, 200, 80, .95) 30%,
-    rgba(255, 200, 80, .95) 70%,
+    rgba(207, 155, 21, .95) 30%,
+    rgba(207, 155, 21, .95) 70%,
     transparent
   );
 
   box-shadow:
-    0 0 12px rgba(255,200,80,.8),
-    0 0 24px rgba(255,200,80,.45);
+    0 0 12px rgba(207,155,21,.8),
+    0 0 24px rgba(207,155,21,.45);
 
   animation: timeline-light-travel 8s linear infinite;
 }
@@ -479,5 +479,81 @@
   .project-card-shell:hover .project-card-image,
   .project-card-shell:focus-within .project-card-surface {
     transform: none;
+  }
+}
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 6rem;
+}
+
+.project-card-media {
+  height: 12rem;
+}
+
+.hero-cta-row .hero-resume-button {
+  width: auto;
+  height: 2.75rem;
+  margin-bottom: 0;
+  padding-inline: 1rem;
+  flex-shrink: 0;
+}
+
+.hero-cta-row .hero-resume-button .buttonText {
+  margin-right: 2rem;
+  color: #fff;
+  font-size: 0.875rem;
+  font-weight: 400;
+}
+
+@media (max-width: 640px) {
+  .hero-cta-row .hero-resume-button {
+    padding-inline: 0.5rem;
+  }
+
+  .hero-cta-row .hero-resume-button .buttonText {
+    margin-right: 0.5rem;
+    font-size: 0.75rem;
+  }
+}
+
+@media (max-width: 340px) {
+  .hero-cta-row {
+    gap: 0.25rem;
+  }
+
+  .hero-cta-row > a {
+    padding-inline: 0.25rem;
+    font-size: 0.625rem;
+  }
+
+  .hero-cta-row .hero-resume-button {
+    padding-inline: 0.25rem;
+  }
+
+  .hero-cta-row .hero-resume-button .buttonText {
+    margin-right: 0.5rem;
+    font-size: 0.625rem;
+  }
+}
+
+.project-card-image {
+  display: block;
+  transition: transform 450ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .project-card:hover .project-card-image {
+    transform: scale(1.04);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  .project-card-image {
+    transition: none;
   }
 }

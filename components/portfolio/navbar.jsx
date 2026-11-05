@@ -13,8 +13,8 @@ export function Navbar() {
     <header className="sticky top-0 z-50 px-3 pt-3 md:px-4">
       <RevealOnView as="div" className="mx-auto flex w-[90%] flex-col rounded-[20px] border border-white/10 bg-[#3D3C2E]/20 backdrop-blur-md" y={80} delay={0.08}>
         <Container className="flex h-16 items-center justify-between px-4">
-          <a href="#home" className="font-heading text-lg font-semibold text-foreground">
-            UI/UX Designer
+          <a href="#home" className="font-heading text-lg font-semibold text-foreground" onClick={() => setOpen(false)}>
+            Liyana KP
           </a>
 
           {/* Desktop nav */}

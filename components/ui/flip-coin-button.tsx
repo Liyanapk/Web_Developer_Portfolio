@@ -5,9 +5,10 @@ import { cn } from "@/lib/utils"
 
 interface FlipCoinButtonProps {
   children?: ReactNode
+  className?: string
 }
 
-export default function FlipCoinButton({ children = "Download Resume" }: FlipCoinButtonProps) {
+export default function FlipCoinButton({ children = "Download Resume", className }: FlipCoinButtonProps) {
   const [clicked, setClicked] = useState(false)
   const [shrinkLanding, setShrinkLanding] = useState(false)
   const [coinLanded, setCoinLanded] = useState(false)
@@ -119,11 +120,16 @@ export default function FlipCoinButton({ children = "Download Resume" }: FlipCoi
 
   return (
     <button
-      className={cn("flipCoinButton", {
-        clicked: clicked,
-        shrinkLanding: shrinkLanding,
-        coinLanded: coinLanded,
-      })}
+      type="button"
+      className={cn(
+        "flipCoinButton",
+        {
+          clicked: clicked,
+          shrinkLanding: shrinkLanding,
+          coinLanded: coinLanded,
+        },
+        className,
+      )}
       onClick={handleClick}
     >
       <span className="buttonText">{children}</span>
@@ -175,14 +181,14 @@ const styles = `
   opacity: 0;
   transform: scale(2) translateY(-10px);
 }
-.buttonText { color: #fff; margin-right: 1.8rem; opacity: 1; position: relative; transition: opacity 100ms linear 500ms; z-index: 3; }
-.flipCoinButton::before { background: #cf9b15; border-radius: 0.25rem; bottom: 0; content: ""; display: block; height: 100%; left: 50%; position: absolute; transform: translateX(-50%); transition: height 250ms ease-in-out 400ms, width 250ms ease-in-out 300ms; width: 100%; z-index: 2; }
+.buttonText { color: var(--primary-foreground); margin-right: 1.8rem; opacity: 1; position: relative; transition: opacity 100ms linear 500ms; z-index: 3; }
+.flipCoinButton::before { background: var(--primary); border-radius: 0.25rem; bottom: 0; content: ""; display: block; height: 100%; left: 50%; position: absolute; transform: translateX(-50%); transition: height 250ms ease-in-out 400ms, width 250ms ease-in-out 300ms; width: 100%; z-index: 2; }
 .flipCoinButton::after { bottom: -1rem; color: #808080; content: "Thank you!"; height: 110%; left: 0; opacity: 0; position: absolute; pointer-events: none; text-align: center; transform: scale(0); transform-origin: 50% 20%; transition: transform 200ms cubic-bezier(0, 0, 0.35, 1.43); width: 100%; z-index: 1; }
 .coinWrapper { background: none; bottom: 0; height: 18rem; left: 0; opacity: 1; overflow: hidden; pointer-events: none; position: absolute; transform: none; transform-origin: 50% 100%; transition: opacity 200ms linear 100ms, transform 300ms ease-out; width: 100%; }
 .coin { --front-y-multiplier: 0; --back-y-multiplier: 0; --coin-y-multiplier: 0; --coin-x-multiplier: 0; --coin-scale-multiplier: 0; --coin-rotation-multiplier: 0; --shine-opacity-multiplier: 0.4; --shine-bg-multiplier: 50%; bottom: calc(var(--coin-y-multiplier) * 1rem - 3.5rem); height: 3.5rem; margin-bottom: 3.05rem; position: absolute; right: calc(var(--coin-x-multiplier) * 34% + 16%); transform: translateX(50%) scale(calc(0.4 + var(--coin-scale-multiplier))) rotate(calc(var(--coin-rotation-multiplier) * -1deg)); transition: opacity 100ms linear 200ms; width: 3.5rem; z-index: 3; }
 .coinFront, .coinMiddle, .coinBack, .coin::before, .coinFront::after, .coinBack::after { border-radius: 50%; box-sizing: border-box; height: 100%; left: 0; position: absolute; width: 100%; z-index: 3; }
 .coinFront {
-  background-color: #785700;
+  background-color: var(--primary);
   transform: translateY(calc(var(--front-y-multiplier) * 0.3181818182rem / 2))
     scaleY(var(--front-scale-multiplier));
 }
@@ -206,9 +212,9 @@ const styles = `
   transform: translate(-50%, -50%);
   z-index: 4;
 }
-.coinMiddle { background: #785700; transform: translateY(calc(var(--middle-y-multiplier) * 0.3181818182rem / 2)) scaleY(var(--middle-scale-multiplier)); }
+.coinMiddle { background: var(--primary); transform: translateY(calc(var(--middle-y-multiplier) * 0.3181818182rem / 2)) scaleY(var(--middle-scale-multiplier)); }
 .coinBack {
-  background-color: #785700;
+  background-color: var(--primary);
   transform: translateY(calc(var(--back-y-multiplier) * 0.3181818182rem / 2))
     scaleY(var(--back-scale-multiplier));
 }
@@ -233,7 +239,7 @@ const styles = `
   z-index: 4;
 }
 .coin::before { background: radial-gradient(circle at 25% 65%, transparent 50%, rgba(255, 255, 255, 0.9) 90%), linear-gradient(55deg, transparent calc(var(--shine-bg-multiplier) + 0%), #e9f4ff calc(var(--shine-bg-multiplier) + 0%), transparent calc(var(--shine-bg-multiplier) + 50%)); content: ""; opacity: var(--shine-opacity-multiplier); transform: translateY(calc(var(--middle-y-multiplier) * 0.3181818182rem / -2)) scaleY(var(--middle-scale-multiplier)) rotate(calc(var(--coin-rotation-multiplier) * 1deg)); z-index: 10; }
-.coin::after { background: #785700; content: ""; height: 0.3181818182rem; left: 0; position: absolute; top: 50%; transform: translateY(-50%); width: 100%; z-index: 2; }
+.coin::after { background: var(--primary); content: ""; height: 0.3181818182rem; left: 0; position: absolute; top: 50%; transform: translateY(-50%); width: 100%; z-index: 2; }
 @keyframes shake { 0% { transform: rotate(4deg); } 66% { transform: rotate(-4deg); } 100% { transform: rotate(); } }
 `
 

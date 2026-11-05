@@ -17,10 +17,10 @@ const sora = Sora({
 })
 
 export const metadata = {
-  title: "Liyana KP — UI/UX Designer & Front-End Developer",
+  title: "Liyana KP | Frontend Developer",
   description:
-    "Portfolio of Liyana KP, a UI/UX Designer and Front-End Developer creating intuitive digital experiences and responsive web applications.",
-     icons: {
+    "Portfolio of Liyana KP, a frontend developer building responsive web experiences with React.js and Next.js.",
+  icons: {
     icon: "/heroimage/favicon_portfolio.png",
     shortcut: "/heroimage/favicon_portfolio.png",
     apple: "/heroimage/favicon_portfolio.png",

@@ -1,9 +1,9 @@
 "use client"
 
-import { motion } from "framer-motion"
+import { motion, useReducedMotion } from "framer-motion"
 
 const revealTransition = {
-  duration: 1.2,
+  duration: 0.65,
   ease: [0.16, 1, 0.3, 1],
 }
 
@@ -17,14 +17,21 @@ export function RevealOnView({
   as = "div",
   ...props
 }) {
+  const prefersReducedMotion = useReducedMotion()
   const MotionElement = motion[as] || motion.div
 
   return (
     <MotionElement
-      initial={{ opacity: 0, x, y, scale, filter: "blur(8px)" }}
-      whileInView={{ opacity: 1, x: 0, y: 0, scale: 1, filter: "blur(0px)" }}
+      initial={{
+        opacity: 0,
+        x: prefersReducedMotion ? 0 : x,
+        y: prefersReducedMotion ? 0 : y,
+        scale: prefersReducedMotion ? 1 : scale,
+        filter: prefersReducedMotion ? "none" : "blur(4px)",
+      }}
+      whileInView={{ opacity: 1, x: 0, y: 0, scale: 1, filter: "none" }}
       viewport={{ once: true, amount: 0.22 }}
-      transition={{ ...revealTransition, delay }}
+      transition={{ ...revealTransition, duration: prefersReducedMotion ? 0.2 : revealTransition.duration, delay }}
       className={className}
       style={{ willChange: "transform, opacity, filter" }}
       {...props}

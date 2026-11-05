@@ -1,17 +1,9 @@
-"use client"
-
-import { Download } from "lucide-react"
 import FlipCoinButton from "@/components/ui/flip-coin-button"
 
 export function ResumeDownloadButton() {
   return (
-    <a href="/document/Liyana_UI_UX.pdf" download className="inline-flex">
-      <FlipCoinButton>
-        <span className="inline-flex items-center gap-5">
-          {/* <Download className="h-4 w-4" /> */}
-          <span>Download Resume</span>
-        </span>
-      </FlipCoinButton>
+    <a href="/document/Liyana_Front_end_Resume.pdf" download className="inline-flex">
+      <FlipCoinButton className="hero-resume-button">Download Resume</FlipCoinButton>
     </a>
   )
 }

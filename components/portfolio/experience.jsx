@@ -1,44 +1,36 @@
 "use client"
 
 import { EXPERIENCE } from "@/lib/portfolio-data"
-import { Container, SectionTitle } from "./primitives"
+import { Container, SectionKicker, SectionTitle } from "./primitives"
 import { FadeUp } from "./animations"
-
-// Reusable timeline item.
-function ExperienceItem({ company, role, period, points, index }) {
-  return (
-    <FadeUp as="li" className="relative pl-8" delay={0.12 + index * 0.04} y={120}>
-      {/* dot */}
-      <span className="absolute left-0 top-1.5 h-3 w-3 -translate-x-1/2 rounded-full border-2 border-primary bg-background" />
-      <div className="flex flex-col gap-1 sm:flex-row sm:items-baseline sm:justify-between">
-        <h3 className="font-heading text-base font-bold uppercase tracking-wide text-foreground">{company}</h3>
-        <span className="text-xs text-muted-foreground">{period}</span>
-      </div>
-      <p className="mt-1 text-sm text-foreground">{role}</p>
-      <ul className="mt-2 ">
-        {points.map((point) => (
-          <li key={point} className="text-sm text-muted-foreground ">
-            <span className=" text-primary"></span>
-            {point}
-          </li>
-        ))}
-      </ul>
-    </FadeUp>
-  )
-}
 
 export function Experience() {
   return (
-    <section className="py-16 md:py-24">
+    <section id="experience" className="py-16 md:py-24">
       <Container>
-        <FadeUp as="div" delay={0.05}>
-          <SectionTitle>Experience</SectionTitle>
+        <FadeUp as="div" className="text-center" delay={0.05} y={24}>
+          <SectionKicker>Career</SectionKicker>
+          <SectionTitle className="mt-3">Work Experience</SectionTitle>
         </FadeUp>
-        <ol className="relative mt-12 space-y-12 border-l border-border pl-4">
-          {/* Golden light that travels down the timeline occasionally */}
-          <span aria-hidden="true" className="timeline-light" />
-          {EXPERIENCE.map((item, index) => (
-            <ExperienceItem key={item.company} {...item} index={index} />
+        <ol className="mt-9 divide-y divide-border rounded-xl border border-border bg-card/40">
+          {EXPERIENCE.map(({ company, role, period, points }, index) => (
+            <FadeUp key={company} as="li" className="p-5 sm:p-7" delay={0.08 + index * 0.06} y={24}>
+              <div className="flex flex-col gap-2 sm:flex-row sm:items-start sm:justify-between">
+                <div>
+                  <h3 className="font-heading text-lg font-semibold text-foreground">{company}</h3>
+                  <p className="mt-1 text-sm font-medium text-primary">{role}</p>
+                </div>
+                <time className="shrink-0 text-sm text-muted-foreground">{period}</time>
+              </div>
+              <ul className="mt-4 space-y-2">
+                {points.map((point) => (
+                  <li key={point} className="flex gap-3 text-sm leading-relaxed text-muted-foreground">
+                    <span className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-primary" aria-hidden="true" />
+                    {point}
+                  </li>
+                ))}
+              </ul>
+            </FadeUp>
           ))}
         </ol>
       </Container>

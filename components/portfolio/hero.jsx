@@ -2,60 +2,90 @@
 
 import { Container } from "./primitives"
 import { ResumeDownloadButton } from "./resume-download-button"
-import { FadeUp, ImageReveal, RevealOnView } from "./animations"
+import { FadeUp, ImageReveal } from "./animations"
+
+const SOCIAL_LINKS = [
+  { label: "GitHub", href: "https://github.com/Liyanapk", image: "/footer/github.png" },
+  { label: "LinkedIn", href: "https://www.linkedin.com/in/liyana-k-p-/", image: "/footer/linkedin.png" },
+]
 
 export function Hero() {
   return (
-    <section id="home" className="relative overflow-hidden bg-background">
-      {/* soft accent glow behind the portrait */}
+    <section id="home" className="relative overflow-hidden pb-16 pt-16 sm:pb-20 sm:pt-20">
       <div
         aria-hidden="true"
-        className="pointer-events-none absolute left-1/2 top-1/2 h-[300px] w-[450px] -translate-x-[56%] -translate-y-1/2 rounded-full bg-primary/30 blur-[140px]"
+        className="pointer-events-none absolute -right-32 top-12 h-80 w-80 rounded-full bg-primary/10 blur-[120px]"
       />
-      <Container className="relative grid grid-cols-1 items-center gap-6 pb-8 pt-4 md:grid-cols-[1fr_1.2fr_1fr] md:gap-2 md:pb-6 md:pt-5 lg:pb-4 lg:pt-10">
-        {/* Left intro */}
-        <RevealOnView as="div" className="order-2 text-center md:order-1 md:text-left" x={-140} y={0} delay={0.12}>
-          <FadeUp as="p" className="text-lg text-muted-foreground" delay={0.16}>
-            Hello, I&apos;m
+      <Container className="relative grid items-center gap-12 md:grid-cols-[1.2fr_0.8fr] md:gap-8 lg:gap-16">
+        <div className="order-2 text-center md:order-1 md:text-left">
+          <FadeUp as="p" className="text-sm font-medium uppercase tracking-[0.18em] text-primary" delay={0.05} y={24}>
+            Frontend Developer
           </FadeUp>
-          <FadeUp as="h1" className="mt-2 bg-gradient-to-b from-[#FFFFFF] via-[#F7F2B0] to-[#D5CA39] bg-clip-text font-heading text-4xl font-extrabold tracking-tight text-transparent sm:text-5xl" delay={0.24}>
-            LIYANA KP
+          <FadeUp
+            as="h1"
+            className="mt-4 font-heading text-4xl font-bold leading-tight tracking-tight text-foreground sm:text-5xl lg:text-6xl"
+            delay={0.1}
+            y={24}
+          >
+            Hi, I&apos;m Liyana KP
           </FadeUp>
-        </RevealOnView>
+          <FadeUp as="h2" className="mt-3 font-heading text-xl font-semibold text-primary sm:text-2xl" delay={0.15} y={24}>
+            React.js · Next.js · Web Development
+          </FadeUp>
+          <FadeUp as="p" className="mx-auto mt-5 max-w-xl text-base leading-relaxed text-muted-foreground md:mx-0" delay={0.2} y={24}>
+            I build responsive, interactive and user-friendly web experiences using modern frontend technologies.
+          </FadeUp>
 
-        {/* Portrait */}
-        <ImageReveal as="div" className="order-1 mx-auto flex items-end justify-center md:order-2 md:self-end" delay={0.16}>
-          <div className="relative w-full max-w-[400px] md:w-[350px] lg:w-[350px] xl:w-[400px] md:-translate-x-4 md:translate-y-8 lg:-translate-x-12 lg:translate-y-10">
+          <FadeUp as="div" className="hero-cta-row mt-8 flex flex-nowrap items-center justify-center gap-2 md:justify-start" delay={0.25} y={24}>
+            {/* <a
+              href="#projects"
+              className="inline-flex min-h-11 shrink-0 items-center justify-center whitespace-nowrap rounded-md bg-primary px-3 text-sm font-normal text-white transition-colors hover:bg-primary/85 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary sm:px-4 max-[640px]:px-2 max-[640px]:text-xs"
+            >
+              View My Projects
+            </a> */}
+            <ResumeDownloadButton />
+            {/* <a
+              href="#contact"
+              className="inline-flex min-h-11 shrink-0 items-center justify-center whitespace-nowrap rounded-md border border-border px-3 text-sm font-normal text-white transition-colors hover:border-primary hover:text-primary focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary sm:px-4 max-[640px]:px-2 max-[640px]:text-xs"
+            >
+              Contact Me
+            </a> */}
+          </FadeUp>
+
+          {/* <FadeUp as="div" className="mt-7 flex items-center justify-center gap-4 md:justify-start" delay={0.3} y={24}>
+            {SOCIAL_LINKS.map(({ label, href, image }) => (
+              <a
+                key={label}
+                href={href}
+                target="_blank"
+                rel="noreferrer"
+                aria-label={label}
+                className="inline-flex items-center gap-2 text-sm text-muted-foreground transition-colors hover:text-primary focus-visible:rounded-sm focus-visible:outline focus-visible:outline-2 focus-visible:outline-primary"
+              >
+                <img src={image} alt="" className="h-4 w-4 object-contain" />
+                {label}
+              </a>
+            ))}
+          </FadeUp> */}
+        </div>
+
+        <ImageReveal as="div" className="order-1 mx-auto w-full max-w-[330px] md:order-2 md:max-w-[390px]" delay={0.12}>
+          <div className="relative">
+            <div
+              aria-hidden="true"
+              className="pointer-events-none absolute inset-x-[12%] top-[18%] z-0 h-[55%] rounded-full bg-primary/10 blur-[80px]"
+            />
+            <div
+              aria-hidden="true"
+              className="pointer-events-none absolute -inset-x-[8%] bottom-[-8%] z-0 h-[30%] rounded-[50%] bg-gradient-to-b from-primary/20 via-primary/10 to-transparent blur-[48px]"
+            />
             <img
               src="/heroimage/liyaa.png"
               alt="Portrait of Liyana KP"
-              className="h-auto w-full object-contain drop-shadow-[0_20px_60px_rgba(0,0,0,0.45)]"
+              className="relative z-10 mx-auto max-h-[440px] w-full object-contain drop-shadow-[0_20px_48px_rgba(0,0,0,0.28)]"
             />
-            <div className="pointer-events-none absolute bottom-0 h-24 bg-gradient-to-t from-[#0B0B0B] via-[#0B0B0B]/70 to-transparent" />
           </div>
         </ImageReveal>
-
-        {/* Right title + CTA */}
-        <RevealOnView as="div" className="order-3 text-center md:text-left" x={140} y={0} delay={0.18}>
-          <FadeUp as="h2" className="bg-gradient-to-b from-[#FFFFFF] via-[#F7F2B0] to-[#D5CA39] bg-clip-text font-heading text-[31.96px] font-semibold leading-snug text-transparent sm:text-3xl" delay={0.2}>
-            <span className="bg-gradient-to-b from-[#FFFFFF] via-[#F7F2B0] to-[#D5CA39] bg-clip-text text-transparent">
-              UI/UX Designer
-            </span>{" "}
-            <span className="bg-gradient-to-b from-[#FFFFFF] via-[#F7F2B0] to-[#D5CA39] bg-clip-text text-transparent">
-              &amp;
-            </span>
-            <br />
-            <span className="bg-gradient-to-b from-[#FFFFFF] via-[#F7F2B0] to-[#D5CA39] bg-clip-text text-transparent">
-              Front-End Developer
-            </span>
-          </FadeUp>
-          <FadeUp as="p" className="mt-4 text-sm leading-relaxed text-muted-foreground" delay={0.28}>
-            I create intuitive digital experiences and build responsive web applications with modern technologies.
-          </FadeUp>
-          <FadeUp as="div" className="mt-6" delay={0.34}>
-            <ResumeDownloadButton />
-          </FadeUp>
-        </RevealOnView>
       </Container>
     </section>
   )

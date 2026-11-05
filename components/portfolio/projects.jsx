@@ -1,83 +1,72 @@
 "use client"
 
 import { ArrowUpRight } from "lucide-react"
-import { UIUX_PROJECTS, FRONTEND_PROJECTS } from "@/lib/portfolio-data"
+import { DESIGN_CASE_STUDIES, PROJECTS } from "@/lib/portfolio-data"
 import { Container, SectionKicker, SectionTitle } from "./primitives"
 import { FadeUp } from "./animations"
 
-function ProjectCard({
-  title,
-  subtitle,
-  image,
-  href,
-  cta,
-  backTitle,
-  backSkills,
-  details = [],
-  tools = []
-}) {
+function ProjectCard({ project, isCaseStudy = false }) {
+  const { title, subtitle, description, image, technologies, liveDemo, caseStudy, github } = project
+
   return (
-    <div className="project-card-shell flex w-full flex-col">
-      <div className="project-card-surface">
-        <div className="project-card-media">
-          <img
-            src={image || ''}
-            alt={`${title} — ${subtitle}`}
-            className="project-card-image"
-          />
-        </div>
+    <article className="project-card flex h-full flex-col overflow-hidden rounded-xl border border-border bg-card/60 transition-colors hover:border-primary/50">
+      <div className="project-card-media overflow-hidden bg-muted">
+        <img
+          src={image}
+          alt={`${title} ${isCaseStudy ? "case study" : "website"} preview`}
+          loading="lazy"
+          className="project-card-image h-full w-full object-cover"
+        />
+      </div>
+      <div className="flex flex-1 flex-col p-5 sm:p-6">
+        <p className="text-xs font-medium uppercase tracking-[0.12em] text-primary">{subtitle}</p>
+        <h3 className="mt-2 font-heading text-lg font-semibold text-foreground">{title}</h3>
+        <p className="mt-3 min-h-[4.5rem] text-sm leading-relaxed text-muted-foreground">{description}</p>
 
-        <div className="project-card-title rounded-lg bg-black/50 px-3 py-2 backdrop-blur-sm">
-          <p className="font-heading text-sm font-bold uppercase tracking-wide text-white">{title}</p>
-          <p className="text-xs text-slate-200">{subtitle}</p>
-        </div>
-
-        <div className="project-card-details text-white">
-          <h3 className="text-base font-extrabold leading-tight text-yellow-300">{backTitle}</h3>
-          {/* {backSkills ? <p className="mt-1 text-xs leading-tight text-slate-200">{backSkills}</p> : null} */}
-
-          {details.length > 0 ? (
-            <ul className="mt-2 space-y-1">
-              {details.map((item) => (
-                <li key={`${title}-${item}`} className="flex items-start gap-2 text-xs leading-tight text-slate-200">
-                  <span className="mt-1 h-1 w-1 shrink-0 rounded-full bg-yellow-300" aria-hidden="true" />
-                  <span>{item}</span>
-                </li>
-              ))}
-            </ul>
-          ) : null}
-
-          <div className="mt-2 flex flex-wrap items-center gap-1.5">
-            <span className="text-xs font-semibold text-yellow-300">Tools:</span>
-            {tools.map((tool) => (
-              tool.startsWith("img:") ? (
-                <img
-                  key={`${title}-${tool}`}
-                  src={tool.replace("img:", "")}
-                  alt="Tool"
-                  className="h-full w-full max-h-4 max-w-4 object-contain"
-                />
-              ) : (
-                <span
-                  key={`${title}-${tool}`}
-                  className="rounded-full border border-white/10 bg-white/10 px-2.5 py-1 text-xs text-slate-100"
-                >
-                  {tool}
-                </span>
-              )
+        {technologies?.length > 0 && (
+          <ul className="mt-4 flex flex-wrap gap-2" aria-label="Technologies">
+            {technologies.map((technology) => (
+              <li key={technology} className="rounded-full border border-border px-2.5 py-1 text-xs text-muted-foreground">
+                {technology}
+              </li>
             ))}
-          </div>
+          </ul>
+        )}
+
+        <div className="mt-auto flex flex-wrap gap-4 pt-5">
+          {liveDemo && (
+            <a
+              href={liveDemo}
+              target="_blank"
+              rel="noreferrer"
+              className="inline-flex items-center gap-1.5 text-sm font-semibold text-primary hover:underline focus-visible:rounded-sm focus-visible:outline focus-visible:outline-2 focus-visible:outline-primary"
+            >
+              Live Demo <ArrowUpRight className="h-4 w-4" aria-hidden="true" />
+            </a>
+          )}
+          {github && (
+            <a
+              href={github}
+              target="_blank"
+              rel="noreferrer"
+              className="inline-flex items-center gap-1.5 text-sm font-semibold text-foreground hover:text-primary focus-visible:rounded-sm focus-visible:outline focus-visible:outline-2 focus-visible:outline-primary"
+            >
+              <img src="/footer/github.png" alt="" className="h-4 w-4 object-contain" /> GitHub
+            </a>
+          )}
+          {isCaseStudy && caseStudy && (
+            <a
+              href={caseStudy}
+              target="_blank"
+              rel="noreferrer"
+              className="inline-flex items-center gap-1.5 text-sm font-semibold text-primary hover:underline focus-visible:rounded-sm focus-visible:outline focus-visible:outline-2 focus-visible:outline-primary"
+            >
+              View Case Study <ArrowUpRight className="h-4 w-4" aria-hidden="true" />
+            </a>
+          )}
         </div>
       </div>
-
-      <a
-        href={href}
-        className="mt-3 inline-flex items-center gap-1 self-end text-xs font-semibold text-primary underline-offset-4 hover:underline focus-visible:rounded-sm focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-primary"
-      >
-        {cta}
-        <ArrowUpRight className="h-3.5 w-3.5" />
-      </a>
-    </div>
+    </article>
   )
 }
 
@@ -85,33 +74,34 @@ export function Projects() {
   return (
     <section id="projects" className="py-16 md:py-24">
       <Container>
-        <FadeUp as="div" delay={0.05}>
-          <SectionTitle>Featured Projects</SectionTitle>
+        <FadeUp as="div" className="text-center" delay={0.05} y={24}>
+          <SectionKicker>Selected Work</SectionKicker>
+          <SectionTitle className="mt-3">Featured Projects</SectionTitle>
+          <p className="mx-auto mt-4 max-w-xl text-sm leading-relaxed text-muted-foreground">
+            Live websites and frontend work, with design case studies clearly identified separately.
+          </p>
         </FadeUp>
 
-        {/* UI/UX Projects */}
-        <div className="mt-12">
-          <FadeUp as="div" delay={0.08}>
-            <SectionKicker>UI/UX Projects</SectionKicker>
-          </FadeUp>
-          <div className="mt-6 flex flex-wrap justify-center gap-6">
-            {UIUX_PROJECTS.map((project, index) => (
-              <FadeUp key={project.title + project.subtitle} as="div" className="w-full sm:w-[calc(50%-0.75rem)] lg:w-[calc(33.333%-1rem)]" delay={0.12 + index * 0.04} y={120}>
-                <ProjectCard {...project} cta="Open Project" />
-              </FadeUp>
-            ))}
-          </div>
+        <div className="mt-9 grid grid-cols-1 items-stretch gap-5 sm:grid-cols-2 lg:grid-cols-3">
+          {PROJECTS.map((project, index) => (
+            <FadeUp key={project.title} as="div" className="h-full" delay={0.08 + index * 0.05} y={24}>
+              <ProjectCard project={project} />
+            </FadeUp>
+          ))}
         </div>
 
-        {/* Frontend Projects */}
-        <div className="mt-32">
-          <FadeUp as="div" delay={0.1}>
-            <SectionKicker>Frontend Projects</SectionKicker>
+        <div className="mt-16 border-t border-border pt-10">
+          <FadeUp as="div" delay={0.05} y={24}>
+            <SectionKicker>UI/UX Case Studies</SectionKicker>
+            <h3 className="mt-3 font-heading text-xl font-semibold text-foreground">Design work that supports my frontend practice</h3>
+            <p className="mt-3 max-w-2xl text-sm leading-relaxed text-muted-foreground">
+              These are design case studies, not presented as deployed web applications.
+            </p>
           </FadeUp>
-          <div className="mt-6 flex flex-wrap justify-center gap-6">
-            {FRONTEND_PROJECTS.map((project, index) => (
-              <FadeUp key={project.title} as="div" className="w-full sm:w-[calc(50%-0.75rem)] lg:w-[calc(33.333%-1rem)]" delay={0.12 + index * 0.04} y={120}>
-                <ProjectCard {...project} cta="Open Website" />
+          <div className="mt-6 grid grid-cols-1 items-stretch gap-5 sm:grid-cols-2 lg:grid-cols-3">
+            {DESIGN_CASE_STUDIES.map((project, index) => (
+              <FadeUp key={project.title} as="div" className="h-full" delay={0.1 + index * 0.06} y={24}>
+                <ProjectCard project={project} isCaseStudy />
               </FadeUp>
             ))}
           </div>
